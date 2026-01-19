@@ -14,7 +14,7 @@ import java.util.concurrent.Executors;
  * Демонстрация использования пула объектов.
  * Показывает преимущества пула в многопоточной среде.
  */
-public class PoolDemo {
+public class PoolInvoker {
 
     public static void main(String[] args) throws Exception {
         System.out.println("=== Object Pool Pattern Demo ===\n");
