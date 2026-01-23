@@ -5,6 +5,7 @@ import org.gulash.chain.model.Request;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 /**
  * Базовый абстрактный класс для всех обработчиков в цепочке обязанностей.
@@ -20,6 +21,7 @@ public abstract class Handler {
 
     /**
      * Статический метод для связывания нескольких обработчиков в одну цепочку.
+     * Позволяет удобно выстраивать цепочку: link(h1, h2, h3) -> h1.next=h2, h2.next=h3.
      *
      * @param first первый обработчик цепочки
      * @param chain последующие обработчики
@@ -34,14 +36,6 @@ public abstract class Handler {
         return first;
     }
 
-    /**
-     * Создает новый экземпляр строителя цепочки.
-     *
-     * @return {@link HandlerBuilder}
-     */
-    public static HandlerBuilder builder() {
-        return new HandlerBuilder();
-    }
 
     /**
      * Основной метод обработки запроса.
@@ -67,6 +61,15 @@ public abstract class Handler {
     }
 
     /**
+     * Создает новый экземпляр строителя цепочки.
+     *
+     * @return {@link HandlerBuilder}
+     */
+    public static HandlerBuilder builder() {
+        return new HandlerBuilder();
+    }
+
+    /**
      * Вспомогательный класс для удобного построения цепочки обработчиков.
      */
     public static class HandlerBuilder {
@@ -85,16 +88,31 @@ public abstract class Handler {
 
         /**
          * Связывает все зарегистрированные обработчики и возвращает голову цепочки.
+         * Добавляет {@link DefaultHandler} в конец цепочки в качестве финального звена.
          *
-         * @return первый обработчик в цепочке или null, если список пуст
+         * @return первый обработчик в цепочке или {@link DefaultHandler}, если список был пуст
          */
         public Handler buildChain() {
             chain.add(new DefaultHandler());
             chain.stream().reduce(
                 (previous, current) -> {
-                    previous.next = current; return current;}
+                    previous.next = current; return current;
+                }
             );
             return chain.getFirst();
+
+//            или более привычно
+//            chain.add(new DefaultHandler());
+//            for (int i = 0; i < chain.size() - 1; i++) {
+//                chain.get(i).next = chain.get(i + 1);
+//            }
+//            return chain.getFirst();
+
+//            или красиво
+//            chain.add(new DefaultHandler());
+//            IntStream.range(1, chain.size())
+//                .forEach( i -> { chain.get(i - 1).next = chain.get(i); } );
+//            return chain.getFirst();
         }
     }
 }

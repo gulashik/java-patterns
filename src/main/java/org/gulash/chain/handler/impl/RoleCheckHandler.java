@@ -10,9 +10,10 @@ import org.gulash.chain.model.Request;
 public class RoleCheckHandler extends Handler {
     /**
      * Проверяет права доступа.
+     * Если URL начинается с "/admin", проверяет наличие флага isAdmin.
      *
      * @param request объект запроса
-     * @return true, если доступ разрешен и последующие обработчики вернули true
+     * @return true, если доступ разрешен и последующие обработчики вернули true; false в противном случае
      */
     @Override
     public boolean handle(Request request) {

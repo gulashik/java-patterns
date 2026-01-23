@@ -9,10 +9,11 @@ import org.gulash.chain.model.Request;
  */
 public class AuthHandler extends Handler {
     /**
-     * Проверяет авторизацию.
+     * Проверяет наличие и формат JWT токена.
+     * Ожидается формат "Bearer <token>".
      *
      * @param request объект запроса
-     * @return true, если токен валиден и последующие обработчики вернули true
+     * @return true, если токен валиден и последующие обработчики вернули true; false в противном случае
      */
     @Override
     public boolean handle(Request request) {

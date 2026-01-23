@@ -10,9 +10,10 @@ import org.gulash.chain.model.Request;
 public class ValidationHandler extends Handler {
     /**
      * Выполняет валидацию данных.
+     * Проверяет, что тело запроса не является пустым или null.
      *
      * @param request объект запроса
-     * @return true, если тело запроса не пустое и последующие обработчики вернули true
+     * @return true, если данные валидны и последующие обработчики вернули true; false в противном случае
      */
     @Override
     public boolean handle(Request request) {
