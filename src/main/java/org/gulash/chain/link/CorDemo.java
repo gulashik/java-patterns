@@ -1,10 +1,10 @@
-package org.gulash.chain;
+package org.gulash.chain.link;
 
-import org.gulash.chain.handler.Handler;
-import org.gulash.chain.handler.impl.AuthHandler;
-import org.gulash.chain.handler.impl.RoleCheckHandler;
-import org.gulash.chain.handler.impl.ValidationHandler;
-import org.gulash.chain.model.Request;
+import org.gulash.chain.link.handler.Handler;
+import org.gulash.chain.link.handler.impl.AuthHandler;
+import org.gulash.chain.link.handler.impl.RoleCheckHandler;
+import org.gulash.chain.link.handler.impl.ValidationHandler;
+import org.gulash.chain.link.model.Request;
 
 /**
  * Демонстрация работы паттерна Chain of Responsibility (Цепочка обязанностей).
@@ -55,7 +55,12 @@ public class CorDemo {
 
         System.out.println("\n--- Сценарий 3: Ошибка прав доступа ---");
         Request failRole = new Request("/admin", "Update Data", "Bearer valid-token", false);
+        System.out.println("------");
         process(chain, failRole);
+        System.out.println("------");
+        process(handlerChain, failRole);
+        System.out.println("------");
+        process(handlerChainEmpty, failRole);
 
         System.out.println("\n--- Сценарий 4: Ошибка валидации ---");
         Request failValidation = new Request("/user", "", "Bearer valid-token", false);

@@ -1,13 +1,13 @@
-package org.gulash.chain.handler.impl;
+package org.gulash.chain.list.model.handler.impl;
 
-import org.gulash.chain.handler.Handler;
-import org.gulash.chain.model.Request;
+import org.gulash.chain.list.model.Request;
+import org.gulash.chain.list.model.handler.Handler;
 
 /**
  * Обработчик авторизации.
  * Проверяет наличие и корректность JWT токена в запросе.
  */
-public class AuthHandler extends Handler {
+public class AuthHandler implements Handler {
     /**
      * Проверяет наличие и формат JWT токена.
      * Ожидается формат "Bearer <token>".
@@ -22,6 +22,6 @@ public class AuthHandler extends Handler {
             return false;
         }
         System.out.println("AuthHandler: Авторизация успешна.");
-        return handleNext(request);
+        return true;
     }
 }

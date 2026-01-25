@@ -1,7 +1,7 @@
-package org.gulash.chain.handler.impl;
+package org.gulash.chain.link.handler.impl;
 
-import org.gulash.chain.handler.Handler;
-import org.gulash.chain.model.Request;
+import org.gulash.chain.link.handler.Handler;
+import org.gulash.chain.link.model.Request;
 
 /**
  * Обработчик проверки ролей.

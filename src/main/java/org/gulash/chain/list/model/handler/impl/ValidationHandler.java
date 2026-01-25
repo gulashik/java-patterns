@@ -1,13 +1,13 @@
-package org.gulash.chain.handler.impl;
+package org.gulash.chain.list.model.handler.impl;
 
-import org.gulash.chain.handler.Handler;
-import org.gulash.chain.model.Request;
+import org.gulash.chain.list.model.Request;
+import org.gulash.chain.list.model.handler.Handler;
 
 /**
  * Обработчик валидации.
  * Проверяет корректность тела запроса.
  */
-public class ValidationHandler extends Handler {
+public class ValidationHandler implements Handler {
     /**
      * Выполняет валидацию данных.
      * Проверяет, что тело запроса не является пустым или null.
@@ -22,6 +22,6 @@ public class ValidationHandler extends Handler {
             return false;
         }
         System.out.println("ValidationHandler: Валидация успешна.");
-        return handleNext(request);
+        return true;
     }
 }

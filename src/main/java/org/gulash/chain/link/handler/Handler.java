@@ -1,11 +1,10 @@
-package org.gulash.chain.handler;
+package org.gulash.chain.link.handler;
 
-import org.gulash.chain.handler.impl.DefaultHandler;
-import org.gulash.chain.model.Request;
+import org.gulash.chain.link.handler.impl.DefaultHandler;
+import org.gulash.chain.link.model.Request;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
 
 /**
  * Базовый абстрактный класс для всех обработчиков в цепочке обязанностей.

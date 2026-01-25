@@ -1,4 +1,4 @@
-package org.gulash.chain.model;
+package org.gulash.chain.link.model;
 
 /**
  * Модель HTTP-запроса.
