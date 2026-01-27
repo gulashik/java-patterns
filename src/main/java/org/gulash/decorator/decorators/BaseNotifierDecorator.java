@@ -3,9 +3,13 @@ package org.gulash.decorator.decorators;
 import org.gulash.decorator.Notifier;
 
 /**
- * Базовый класс декоратора. 
- * Он следует тому же интерфейсу, что и другие компоненты. 
- * Основная цель этого класса — определить интерфейс обертки для всех конкретных декораторов.
+ * Базовый класс декоратора.
+ * Он следует тому же интерфейсу, что и другие компоненты.
+ * Основная цель этого класса
+ * <ul>
+ *     <li>DRY принцип (общая логика)</li>
+ *     <li>Частичное переопределение в конкретных декораторах</li>
+ * <ul/>
  */
 public abstract class BaseNotifierDecorator implements Notifier {
     protected final Notifier wrapper;
