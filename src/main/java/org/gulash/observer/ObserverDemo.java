@@ -23,11 +23,6 @@ public class ObserverDemo {
         agency.subscribe(cnn);
         agency.subscribe(euronews);
 
-        bbc = null;
-        cnn = null;
-        euronews = null;
-        System.gc();
-
         // 4. Публикуем новость
         agency.publishNews("Java 21 is released!");
 
