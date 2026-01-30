@@ -1,5 +1,7 @@
 package org.gulash.builder;
 
+import lombok.Getter;
+
 import java.util.Collections;
 import java.util.List;
 
@@ -8,14 +10,20 @@ import java.util.List;
  * В данном примере мы используем классический подход реализации Builder в Java через статический вложенный класс.
  */
 public class ComputerBuilder {
-    // Обязательные параметры (Final)
+    // Обязательные параметры
+    @Getter
     private final String cpu;
+    @Getter
     private final String ram;
 
-    // Необязательные параметры (Final для обеспечения иммутабельности)
+    // Необязательные параметры
+    @Getter
     private final String storage;
+    @Getter
     private final String gpu;
+    @Getter
     private final boolean hasBluetooth;
+    @Getter
     private final List<String> peripherals;
 
     private ComputerBuilder(Builder builder) {
@@ -26,13 +34,6 @@ public class ComputerBuilder {
         this.hasBluetooth = builder.hasBluetooth;
         this.peripherals = builder.peripherals;
     }
-
-    public String getCpu() { return cpu; }
-    public String getRam() { return ram; }
-    public String getStorage() { return storage; }
-    public String getGpu() { return gpu; }
-    public boolean hasBluetooth() { return hasBluetooth; }
-    public List<String> getPeripherals() { return peripherals; }
 
     @Override
     public String toString() {
@@ -51,10 +52,12 @@ public class ComputerBuilder {
      */
     public static class Builder {
         // Те же поля, что и в основном классе
+        // Обязательные поля
         private final String cpu;
         private final String ram;
-        
-        private String storage = "256GB SSD"; // Значение по умолчанию
+
+        // Значение по умолчанию
+        private String storage = "256GB SSD";
         private String gpu = "Integrated";
         private boolean hasBluetooth = false;
         private List<String> peripherals = Collections.emptyList();
